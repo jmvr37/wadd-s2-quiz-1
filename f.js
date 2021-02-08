@@ -41,6 +41,12 @@
 const knex = require('./db/client');
 
 function f() {
+  knex
+  .select("")
+  .from("listings", "hosts")
+  .join("hosts.id", "listings.host_id")
+  .where("host.id", "=", "listings.name")
+  .toString();
   // write knex query here. Rememger to call toString()
 }
 

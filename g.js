@@ -40,6 +40,10 @@
 const knex = require('./db/client');
 
 function g() {
+  knex
+  .select('user_name')
+  .from('users')
+  .where('id', 10)
   // knex query here. remember to call .toString
 }
 

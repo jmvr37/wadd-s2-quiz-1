@@ -6,8 +6,28 @@
 
 // documentation for fs https://nodejs.org/dist/latest-v14.x/docs/api/fs.html
 
-function count() {
-  // your code here
-}
+var fs = require('fs'); 
+ function count(dirPath, arrayOfFiles) {
+  files = fs.readdirSync(dirPath)
 
+  arrayOfFiles = arrayOfFiles || []
+
+  files.forEach(function(file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = count(dirPath + "/" + file, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(file)
+    }
+  })
+
+  return arrayOfFiles
+  
+
+}
+const countFile = count("./books").length
+//
+console.log(countFile);
+//console.log(coundtDir);
 module.exports = count;
+
+
